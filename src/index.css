@@ -1,0 +1,194 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: font1;
+}
+
+@font-face {
+  font-family: font1;
+  src: url(./font/Ubuntu-Bold.ttf);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #0E0F29;
+}
+
+.parent {
+  height: 100vh;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  
+}
+
+.card-wrapper {
+  perspective: 1000px;
+  width: 270px;
+  height: 320px;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc, #ff00cc);
+  background-size: 400%;
+  z-index: 0;
+  border-radius: 33px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  animation: glowing 8s linear infinite;
+}
+
+.card-wrapper:hover::before {
+  opacity: 1;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1;
+  background: #ffffff;
+}
+
+.card-wrapper.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 30px;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-front {
+  justify-content: center;
+  align-items: center;
+}
+
+.card-front img {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ccc;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card-front h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-back .top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.top img {
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  border: 1px solid #b1b1b1;
+  padding: 2px;
+  object-fit: cover;
+
+}
+
+.top button{
+  display: flex;
+  padding: 3px 6px;
+  align-items: center;
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
+  background-color:transparent;
+  font-size: 12px;
+  gap: 3px;
+
+
+}
+
+.center{
+  margin-top: 5px;
+  margin-bottom: 80px;
+}
+
+.center h3 {
+  font-size: 18px;
+  font-weight: 700;
+
+}
+
+.center h3 span{
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.center h2{
+  font-size: 20px;
+}
+
+.center .tag{
+  display: flex;
+  gap: 5px;
+
+}
+
+.center .tag h4{
+  font-size: 12px;
+  background-color: #dadada;
+  color: #111;
+  padding: 3px 6px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #b1b1b1;
+  padding-top: 15px ;
+}
+
+.bottom button{
+  border: none;
+  padding: 5px;
+  color: #fff;
+  background-color: #111;
+  border-radius: 5px;
+}
